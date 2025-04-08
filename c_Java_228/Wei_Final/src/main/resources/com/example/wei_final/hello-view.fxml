@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.wei_final.MainController">
+    <!-- Header 栏 -->
+    <HBox alignment="CENTER" spacing="10" style="-fx-background-color: #336699; -fx-padding: 10;">
+        <Label style="-fx-font-size: 20px; -fx-text-fill: white;" text="Mobile Management System" />
+    </HBox>
+
+    <HBox spacing="10">
+        <!-- 主内容 -->
+        <HBox spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </HBox>
+        <!-- 左栏 -->
+        <VBox prefWidth="300" spacing="10" style="-fx-background-color: #f4f4f4;">
+            <HBox spacing="5">
+                <Label text="Mobile Data">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+            </HBox>
+            <HBox spacing="5">
+                <Label text="Account Number: " />
+                <TextField fx:id="tfMobileAccountNumber" promptText="For Example, TH1234" />
+            </HBox>
+            <HBox spacing="5">
+                <Label text="Mobile usage minutes: " />
+                <TextField fx:id="tfMobileUsageMins" promptText="Mobile usage minutes" />
+            </HBox>
+
+            <!-- 第三个输入框和标签 -->
+            <HBox spacing="5">
+                <Label text="Subscription Type: " />
+                <RadioButton mnemonicParsing="false" text="Personal" />
+                <RadioButton mnemonicParsing="false" text="Commercial" />
+
+            </HBox>
+
+            <!-- 按钮 -->
+            <HBox spacing="5">
+                <Button fx:id="btnSaveData" onAction="#btnSaveDataClick" text="Get Estimate">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Button>
+                <Pane HBox.hgrow="ALWAYS" />
+
+            </HBox>
+            <Label fx:id="lblOutput" text="Out" />
+        </VBox>
+        <HBox spacing="2">
+            <padding>
+                <Insets bottom="10" left="1" right="1" top="10" />
+            </padding>
+        </HBox>
+        <!-- 右栏 -->
+        <TableView fx:id="billTableView" HBox.hgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colAccountNumber" text="Account Number" />
+                <TableColumn fx:id="colMobileUsageMins" text="Mobile usage minutes" />
+                <TableColumn fx:id="colSubscriptionType" text="Subscription Type" />
+                <TableColumn fx:id="colEstimateAmount" text="Estimate Amount" />
+            </columns>
+        </TableView>
+        <HBox spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </HBox>
+    </HBox>
+    <HBox alignment="CENTER" spacing="1">
+        <padding>
+            <Insets bottom="1" left="1" right="1" top="1" />
+        </padding>
+    </HBox>
+</VBox>

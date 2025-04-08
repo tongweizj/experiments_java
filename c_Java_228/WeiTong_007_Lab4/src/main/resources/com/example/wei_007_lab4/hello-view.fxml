@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.RadioButton?>
+<?import org.controlsfx.control.ListSelectionView?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+
+<GridPane alignment="TOP_LEFT" prefHeight="539.0" prefWidth="864.0" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.wei_007_lab4.HelloController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label text="Max Grocery Store" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <font>
+            <Font size="24"/>
+        </font>
+    </Label>
+    <Label text=" " GridPane.columnIndex="1" GridPane.rowIndex="2"></Label>
+    <Label text="Shopping Cart" GridPane.columnIndex="1" GridPane.rowIndex="3">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+    <Label fx:id="lblBookTitle" text="Grocery Item: " GridPane.columnIndex="1" GridPane.rowIndex="4"></Label>
+    <ComboBox fx:id="cbmGroceryItem" GridPane.columnIndex="2" GridPane.rowIndex="4"></ComboBox>
+
+    <Label fx:id="lblQuantity" text="Quantity: " GridPane.columnIndex="1" GridPane.rowIndex="5"></Label>
+    <ComboBox fx:id="cbmGroceryQuantity" GridPane.columnIndex="2" GridPane.rowIndex="5"></ComboBox>
+    <Button onAction="#onSaveItemButtonClick" text="Add Item" GridPane.columnIndex="1"
+            GridPane.rowIndex="6"></Button>
+    <Label fx:id="lblItemsNumber" text="0 items" GridPane.columnIndex="2" GridPane.rowIndex="6"></Label>
+
+    <Label text=" " GridPane.columnIndex="1" GridPane.rowIndex="7"></Label>
+    <Label text="Customer Info" GridPane.columnIndex="1" GridPane.rowIndex="8">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+
+    <Label text="Customer Name: " GridPane.columnIndex="1" GridPane.rowIndex="10"></Label>
+    <TextField fx:id="tfCustomerName" promptText="Enter Customer Name" GridPane.columnIndex="2"
+               GridPane.rowIndex="10"></TextField>
+    <Label text="Customer Address: " GridPane.columnIndex="1" GridPane.rowIndex="11"></Label>
+    <TextField fx:id="tfCustomerAddress" promptText="Enter Customer Address" GridPane.columnIndex="2"
+               GridPane.rowIndex="11"></TextField>
+    <Label text="Delivery Type: " GridPane.columnIndex="1" GridPane.rowIndex="12"></Label>
+    <RadioButton fx:id="rdbA" selected="true" text="Pick Up" GridPane.columnIndex="2" GridPane.rowIndex="12"></RadioButton>
+    <RadioButton fx:id="rdbB" selected="false" text="Home Delivery" GridPane.columnIndex="2" GridPane.rowIndex="13"></RadioButton>
+    <Label text=" " GridPane.columnIndex="1" GridPane.rowIndex="14"></Label>
+    <Button onAction="#onPlaceOrderClick" text="Place Order" GridPane.columnIndex="1"
+            GridPane.rowIndex="15"></Button>
+    <Label text=" " GridPane.columnIndex="1" GridPane.rowIndex="16"></Label>
+    <Label fx:id="lblReceipt" text="Receipt" GridPane.columnIndex="1" GridPane.rowIndex="17">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+    <Label fx:id="lblOutput" text="" GridPane.columnIndex="1" GridPane.rowIndex="18"></Label>
+</GridPane>

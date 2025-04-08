@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.RadioButton?>
+<?import org.controlsfx.control.ListSelectionView?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
+<!--      fx:controller="com.example.bookstore.HelloController">-->
+<!--    <padding>-->
+<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
+<!--    </padding>-->
+
+<!--    <Label fx:id="welcomeText"/>-->
+<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
+<!--</VBox>-->
+
+<GridPane alignment="CENTER" prefHeight="539.0" prefWidth="864.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.example.bookstore.HelloController">
+
+<padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+</padding>
+
+<Label fx:id="lblOutout" text="Sacred Space Bookstore" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <font><Font size="24"/></font>
+</Label>
+
+<Label fx:id="lblBookTitle" text="Book Title: " GridPane.columnIndex="1" GridPane.rowIndex="3"></Label>
+
+<TextField fx:id="tfBookTitle" promptText="Enter book title" GridPane.columnIndex="2" GridPane.rowIndex="3"></TextField>
+
+<Label fx:id="lblBookAuthor" text="Book Author: " GridPane.columnIndex="1" GridPane.rowIndex="5"></Label>
+
+<TextField fx:id="tfBookAuthor" promptText="Enter Author name" GridPane.columnIndex="2" GridPane.rowIndex="5"></TextField>
+<Label fx:id="lblCategory" text="Category: " GridPane.columnIndex="1" GridPane.rowIndex="6"></Label>
+<RadioButton fx:id="rdbA" selected="true" text="A" GridPane.columnIndex="2" GridPane.rowIndex="6"></RadioButton>
+<RadioButton fx:id="rdbB" selected="false" text="B" GridPane.columnIndex="2" GridPane.rowIndex="7"></RadioButton>
+<RadioButton fx:id="rdbC" selected="false" text="C" GridPane.columnIndex="2" GridPane.rowIndex="8"></RadioButton>
+
+<Label fx:id="lblCover" text="Cover: " GridPane.columnIndex="1" GridPane.rowIndex="9"></Label>
+<ComboBox fx:id="cbmCoverType" GridPane.columnIndex="2" GridPane.rowIndex="9"></ComboBox>
+
+<Label fx:id="lblQuantity" text="Quantity: " GridPane.columnIndex="1" GridPane.rowIndex="10"></Label>
+
+<TextField fx:id="tfQuantity" promptText="Enter book Quantity" GridPane.columnIndex="2" GridPane.rowIndex="10"></TextField>
+
+
+<Button onAction="#onSaveButtonClick" text="Save book info" GridPane.columnIndex="1" GridPane.rowIndex="12"></Button>
+
+<Label fx:id="lblOutput" text="output" GridPane.columnIndex="1" GridPane.rowIndex="13"></Label>
+</GridPane>

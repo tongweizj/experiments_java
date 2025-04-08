@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<VBox xmlns:fx="http://javafx.com/fxml" spacing="10" fx:controller="com.example.weitong_007_lab5.HelloController">
+  <!-- Header 栏 -->
+  <HBox spacing="10" alignment="CENTER" style="-fx-background-color: #336699; -fx-padding: 10;">
+    <Label text="College Score Management System" style="-fx-font-size: 20px; -fx-text-fill: white;" />
+  </HBox>
+
+  <HBox spacing="10" >
+    <!-- 主内容 -->
+    <HBox spacing="10">
+      <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+      </padding>
+    </HBox>
+    <!-- 左栏 -->
+    <VBox spacing="10" style="-fx-background-color: #f4f4f4;" prefWidth="300">
+      <HBox spacing="5">
+        <Label text="Student Data" >
+        <font>
+          <Font size="16.0" />
+        </font>
+        </Label>
+      </HBox>
+      <HBox spacing="5">
+        <Label text="Student ID" />
+        <TextField fx:id="tfStudentID" promptText="Student ID" />
+      </HBox>
+      <HBox spacing="5">
+        <Label text="GPA for term 1" />
+        <TextField fx:id="tfTermOne" promptText="Term 1" />
+      </HBox>
+
+      <!-- 第二个输入框和标签 -->
+      <HBox spacing="5">
+        <Label text="GPA for term 2" />
+        <TextField fx:id="tfTermTwo" promptText="Term 2" />
+      </HBox>
+
+      <!-- 第三个输入框和标签 -->
+      <HBox spacing="5">
+        <Label text="GPA for term 3" />
+        <TextField fx:id="tfTermThree" promptText="Term 3" />
+      </HBox>
+
+      <!-- 按钮 -->
+      <HBox spacing="5">
+      <Button fx:id="btnSaveData" text="Save Data" onAction="#btnSaveDataClick">
+        <font>
+          <Font size="16.0" />
+        </font>
+      </Button>
+        <Pane HBox.hgrow="ALWAYS" />
+
+      </HBox>
+      <Label fx:id="lblOutput"  text="GPA for term 3" />
+    </VBox>
+    <HBox spacing="2">
+      <padding>
+        <Insets top="10" right="1" bottom="10" left="1" />
+      </padding>
+    </HBox>
+    <!-- 右栏 -->
+    <TableView fx:id="gpaTableView" HBox.hgrow="ALWAYS">
+      <columns>
+        <TableColumn text="Student ID" fx:id="colSID" />
+        <TableColumn text="GPA for term 1" fx:id="colTermOne" />
+        <TableColumn text="GPA for term 2" fx:id="colTermTwo" />
+        <TableColumn text="GPA for term 3" fx:id="colTermThree" />
+        <TableColumn text="CGPA" fx:id="colCGPA" />
+      </columns>
+    </TableView>
+    <HBox spacing="10">
+      <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+      </padding>
+    </HBox>
+  </HBox>
+  <HBox spacing="1" alignment="CENTER">
+    <padding>
+      <Insets top="1" right="1" bottom="1" left="1" />
+    </padding>
+  </HBox>
+</VBox>

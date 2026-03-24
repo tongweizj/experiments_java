@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking Confirmed - Luxury Cruise</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f0f2f5; }
+        .confirmation-card { max-width: 600px; margin: 50px auto; border-radius: 20px; border: none; overflow: hidden; }
+        .card-header-premium { background-color: #002d72; color: white; padding: 30px; text-align: center; }
+        .ticket-info { border-top: 2px dashed #ddd; padding-top: 20px; }
+        .ref-number { font-size: 1.5rem; font-weight: bold; color: #d4af37; } /* Gold color for luxury */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card confirmation-card shadow-lg">
+        <div class="card-header-premium">
+            <div class="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+            </div>
+            <h2>Payment Successful!</h2>
+            <p>Your luxury voyage is officially booked.</p>
+        </div>
+
+        <div class="card-body p-5">
+            <div class="alert alert-success text-center">
+                A confirmation email has been sent to your registered address.
+            </div>
+
+            <div class="ticket-info">
+                <div class="mb-4 text-center">
+                    <label class="text-muted text-uppercase small">Booking Reference</label>
+                    <div class="ref-number" th:text="'#CR-' + ${booking.booking_id}">#CR-1001</div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label class="text-muted small">Cruise Ship</label>
+                        <p><strong th:text="${booking.cruise.cruise_name}">Symphony of the Seas</strong></p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label class="text-muted small">Departure Date</label>
+                        <p><strong th:text="${booking.departure_date}">2026-03-25</strong></p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label class="text-muted small">Cabin Type</label>
+                        <p th:text="${booking.cabinType}">Suite</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label class="text-muted small">Total Paid</label>
+                        <p><strong th:text="'$' + ${booking.total_price}">$2,598.00</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <div class="d-grid gap-2 mt-4">
+                <a th:href="@{/bookings}" class="btn btn-outline-primary">View My Reservations</a>
+                <button onclick="window.print()" class="btn btn-light text-muted btn-sm">Print Confirmation</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

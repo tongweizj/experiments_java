@@ -1,0 +1,109 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Luxury Cruise Reservation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+
+    <th:block th:replace="~{fragments/header :: common-head}"></th:block>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: headerNav('bookings')}"></div>
+    <div class="container mt-5">
+      <div class="card booking-card p-4">
+        <h2 class="text-center mb-4" style="color: #002d72">
+          Book Your Luxury Voyage<span th:text="${customer.username}"
+            >Guest</span
+          >
+        </h2>
+
+        <form
+          th:action="${cruiseBooking.booking_id > 0} ? 
+                @{/bookings/update/{id}(id=${cruiseBooking.booking_id})} : 
+                @{/bookings/checkout}"
+          th:object="${cruiseBooking}"
+          method="post"
+        >
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <label class="form-label">Select Your Cruise Route</label>
+              <select
+                class="form-select"
+                th:field="*{cruise.cruise_id}"
+                required
+              >
+                <option value="0">-- Choose a Destination --</option>
+                <option
+                  th:each="c : ${allCruises}"
+                  th:value="${c.cruise_id}"
+                  th:text="${c.cruise_name + ' (' + c.origin + ' to ' + c.destination + ') - $' + c.price}"
+                ></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Departure Date</label>
+              <input
+                type="date"
+                class="form-control"
+                th:field="*{departure_date}"
+                required
+              />
+              <div
+                class="text-danger"
+                th:if="${#fields.hasErrors('departure_date')}"
+                th:errors="*{departure_date}"
+              ></div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Return Date</label>
+              <input
+                type="date"
+                class="form-control"
+                th:field="*{return_date}"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Cabin Type</label>
+              <select class="form-select" th:field="*{cabinType}">
+                <option
+                  th:each="type : ${cabinTypes}"
+                  th:value="${type}"
+                  th:text="${type}"
+                ></option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Number of Passengers</label>
+              <input
+                type="number"
+                class="form-control"
+                th:field="*{no_of_passengers}"
+                min="1"
+              />
+              <div
+                class="text-danger"
+                th:if="${#fields.hasErrors('no_of_passengers')}"
+                th:errors="*{no_of_passengers}"
+              ></div>
+            </div>
+          </div>
+
+          <hr />
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-premium btn-lg">
+              Proceed to Checkout
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

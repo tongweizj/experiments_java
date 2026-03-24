@@ -1,0 +1,134 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Reservations - Luxury Cruise</title>
+    <th:block th:replace="~{fragments/header :: common-head}"></th:block>
+  </head>
+  <body>
+    <div th:replace="~{fragments/nav :: headerNav('bookings')}"></div>
+
+    <div class="container">
+      <div class="table-container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="text-primary m-0">My Reservations</h2>
+          <a th:href="@{/bookings/add}" class="btn btn-primary"
+            >+ Book Another Cruise</a
+          >
+        </div>
+
+        <div
+          th:if="${param.success}"
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          Booking cancelled successfully.
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div
+          th:if="${successMessage}"
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          <span th:text="${successMessage}"></span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div
+          th:if="${errorMessage}"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Action Denied:</strong>
+          <span th:text="${errorMessage}"></span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Ref #</th>
+              <th>Cruise Ship</th>
+              <th>Departure Date</th>
+              <th>Cabin</th>
+              <th>Passengers</th>
+              <th>Total Price</th>
+              <th>Status</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="b : ${allBookings}">
+              <td class="fw-bold" th:text="${'#CR-' + b.booking_id}">#CR-1</td>
+              <td th:text="${b.cruise.cruise_name}">Ship Name</td>
+              <td th:text="${b.departure_date}">2026-03-25</td>
+              <td th:text="${b.cabinType}">Balcony</td>
+              <td th:text="${b.no_of_passengers}">2</td>
+              <td class="text-success fw-bold" th:text="${'$' + b.total_price}">
+                $0.00
+              </td>
+              <td>
+                <span
+                  th:classappend="${b.status == 'Cancelled' ? 'bg-danger' : 'bg-success'}"
+                  class="badge status-badge text-white"
+                  th:text="${b.status}"
+                  >Confirmed</span
+                >
+              </td>
+              <td class="text-center">
+                <div class="btn-group" role="group">
+                  <a
+                    th:href="@{/bookings/edit/{id}(id=${b.booking_id})}"
+                    class="btn btn-sm btn-outline-warning"
+                    th:if="${b.status != 'Cancelled'}"
+                    >Edit</a
+                  >
+
+                  <form
+                    th:action="@{/bookings/cancel/{id}(id=${b.booking_id})}"
+                    method="post"
+                    th:if="${b.status != 'Cancelled'}"
+                    onsubmit="
+                      return confirm(
+                        'Are you sure you want to cancel this booking? (Policy: 10 days before departure)',
+                      );
+                    "
+                  >
+                    <button
+                      type="submit"
+                      class="btn btn-sm btn-outline-danger ms-1"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(allBookings)}">
+              <td colspan="8" class="text-center py-5 text-muted">
+                No reservations found.
+                <a th:href="@{/bookings/add}">Book your first cruise now!</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

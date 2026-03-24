@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Secure Checkout - Luxury Cruise</title>
+     <th:block th:replace="~{fragments/header :: common-head}"></th:block>
+</head>
+<body>
+ <div th:replace="~{fragments/nav :: headerNav('home')}"></div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card p-4 summary-card">
+                <h4>Booking Summary</h4>
+                <hr>
+                <p><strong>Cruise:</strong> <span th:text="${selectedCruise.cruise_name}"></span></p>
+                <p><strong>Departure:</strong> <span th:text="${cruiseBooking.departure_date}"></span></p>
+                <p><strong>Passengers:</strong> <span th:text="${cruiseBooking.no_of_passengers}"></span></p>
+                <h3 class="text-primary">Total: $<span th:text="${cruiseBooking.total_price}"></span></h3>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card p-4 shadow">
+                <h3>Payment Method</h3>
+                <p class="text-muted">Payment details are encrypted and NOT stored in our database.</p>
+                
+                <form th:action="@{/bookings/save}" th:object="${cruiseBooking}" method="post">
+                    <input type="hidden" th:field="*{cruise.cruise_id}" />
+                    <input type="hidden" th:field="*{departure_date}" />
+                    <input type="hidden" th:field="*{return_date}" />
+                    <input type="hidden" th:field="*{no_of_passengers}" />
+                    <input type="hidden" th:field="*{cabinType}" />
+                    <input type="hidden" th:field="*{total_price}" />
+
+                    <div class="mb-4 mt-3">
+                        <div class="form-check border p-3 mb-2 rounded">
+                            <input class="form-check-input" type="radio" name="payMethod" id="card" checked>
+                            <label class="form-check-label" for="card">Credit / Debit Card</label>
+                        </div>
+                        <div class="form-check border p-3 mb-2 rounded">
+                            <input class="form-check-input" type="radio" name="payMethod" id="paypal">
+                            <label class="form-check-label" for="paypal">PayPal</label>
+                        </div>
+                        <div class="form-check border p-3 mb-2 rounded">
+                            <input class="form-check-input" type="radio" name="payMethod" id="apple">
+                            <label class="form-check-label" for="apple">Apple Pay / Google Pay</label>
+                        </div>
+                    </div>
+
+                    <div id="card-details">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Card Number">
+                        </div>
+                        <div class="row">
+                            <div class="col"><input type="text" class="form-control" placeholder="MM/YY"></div>
+                            <div class="col"><input type="text" class="form-control" placeholder="CVV"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 mt-4">Confirm & Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Details]</title>
+</head>
+<body>
+<table border="1">
+		<tr>
+			<th>Employee Id</th>
+			<th>Employee Name</th>
+			<th>Job Title</th>
+			<th>Salary</th>
+			<th></th>
+		</tr>
+		<tr th:each="employee : ${employees}">
+			<td th:text="${employee.empId}">Employee Id</td>
+			<td th:text="${employee.empName}">Employee Name</td>
+			<td th:text="${employee.jobTitle}">job Title</td>
+			<td th:text="${employee.salary}">Salary</td>
+			<td>
+                   <a th:href="@{/delete/{id}(id=${employee.empId})}">
+                   <input type="submit" value="Delete" /> </a>
+		  </td>
+		</tr>
+		
+	</table>
+    <strong><a href="/">Go back</a></strong>
+
+</body>
+</html>

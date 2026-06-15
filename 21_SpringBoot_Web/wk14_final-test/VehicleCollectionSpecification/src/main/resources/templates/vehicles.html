@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  <meta charset="UTF-8">
+    <title>Vehicles List</title>
+    <style>
+        .header-actions { margin-bottom: 15px; text-align: right; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 4px; color: white; }
+        .btn-create { background-color: #28a745; }
+        .btn-view { background-color: #17a2b8; }
+        .btn-edit { background-color: #ffc107; color: black; }
+        .btn-delete { background-color: #dc3545; }
+        .btn-back { background-color: #6c757d; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; }
+    </style>
+  </head>
+
+  <body>
+    <h2>Vehicles Details</h2>
+    <div class="header-actions">
+        <a th:href="@{/vehicles/create}" class="btn btn-create">Create Vehicle</a>
+        <a th:href="@{/search}" class="btn  btn-back">Search Vehicle</a>
+       
+    </div>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Vehicle ID</th>
+          <th>Vin Number</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Year</th>
+          <th>Price</th>
+          <th>Added Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="vehicle : ${vehicles}">
+          <td th:text="${vehicle.id}"></td>
+          <td th:text="${vehicle.vinNumber}"></td>
+          <td th:text="${vehicle.brand}"></td>
+          <td th:text="${vehicle.model}"></td>
+          <td th:text="${vehicle.year}"></td>
+          <td th:text="${vehicle.price}"></td>
+          <td th:text="${vehicle.addedDate}"></td>
+          <td>
+                    <a th:href="@{/vehicles/delete/{id}(id=${vehicle.id})}" 
+                       class="btn btn-delete" 
+                       onclick="return confirm('Are you sure to delete？')">Delete</a>
+                </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

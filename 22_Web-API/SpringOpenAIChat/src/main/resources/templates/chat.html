@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring AI Chat</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto; }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
+</head>
+<body>
+<h2>Spring AI Chat</h2>
+
+<div id="chat"></div>
+
+<input type="text" id="message" placeholder="Type a message" size="50" />
+<button onclick="sendMessage()">Send</button>
+
+<script>
+async function sendMessage() {
+    const input = document.getElementById("message");
+    const chat = document.getElementById("chat");
+    const message = input.value;
+
+    if (!message) return;
+
+    chat.innerHTML += `<div class='user'><b>You:</b> ${message}</div>`;
+
+    const response = await fetch(`/api/chat?message=${encodeURIComponent(message)}`);
+    const text = await response.text();
+
+    chat.innerHTML += `<div class='bot'><b>AI:</b> ${text}</div>`;
+
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>

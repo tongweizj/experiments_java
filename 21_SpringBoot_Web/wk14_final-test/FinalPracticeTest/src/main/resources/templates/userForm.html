@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">User Form</title>
+    <style>
+        /* 复用 show.html 的核心样式 */
+        body { font-family: sans-serif; padding: 20px; }
+        .header-actions { margin-bottom: 15px; }
+        
+        /* 按钮样式统一 */
+        .btn { padding: 8px 15px; text-decoration: none; border-radius: 4px; color: white; display: inline-block; border: none; cursor: pointer; font-size: 14px; }
+        .btn-primary { background-color: #28a745; } /* 创建/保存使用绿色 */
+        .btn-secondary { background-color: #6c757d; margin-left: 10px; } /* 取消使用灰色 */
+        
+        /* 表格表单布局 */
+        table { width: 50%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background-color: #f8f9fa; width: 30%; }
+        
+        /* 输入框样式 */
+        input[type="text"], input[type="email"] {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[readonly] { background-color: #eee; cursor: not-allowed; }
+        
+        .form-container { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2 th:text="${pageTitle}">User Form</h2>
+
+    <div class="form-container">
+        <form th:action="@{/users/save}" th:object="${user}" method="post">
+            
+            <input type="hidden" th:field="*{id}" />
+
+            <table>
+                <tr th:if="*{id != null}">
+                    <th>User ID</th>
+                    <td>
+                        <input type="text" th:value="*{id}" readonly />
+                        <br><small style="color: gray;">(ID 自动生成，不可更改)</small>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>User Name</th>
+                    <td>
+                        <input type="text" th:field="*{name}" placeholder="Enter User Name" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Email Address</th>
+                    <td>
+                        <input type="email" th:field="*{email}" placeholder="example@domain.com" required />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>Actions</th>
+                    <td>
+                        <button type="submit" class="btn btn-primary">
+                            <span th:text="*{id == null ? 'Confirm Create' : 'Save Changes'}">Submit</span>
+                        </button>
+                        
+                        <a th:href="@{/showu}" class="btn btn-secondary">Cancel</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+</body>
+</html>

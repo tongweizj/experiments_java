@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details</title>
+    <style>
+        .header-actions { margin-bottom: 15px; text-align: left; }
+        .btn { padding: 5px 10px; text-decoration: none; border-radius: 4px; color: white; display: inline-block; font-family: sans-serif; font-size: 14px; }
+        .btn-edit { background-color: #ffc107; color: black; }
+        .btn-back { background-color: #6c757d; }
+        
+        table { width: 50%; border-collapse: collapse; font-family: sans-serif; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #ddd; }
+        th { background-color: #f8f9fa; width: 30%; }
+        .error-msg { color: #dc3545; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>User Information</h2>
+
+    <div th:if="${user}">
+        <div class="header-actions">
+            <a th:href="@{/users}" class="btn btn-back">返回列表</a>
+            <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-edit">编辑此用户</a>
+        </div>
+
+        <table>
+            <tr>
+                <th>User ID</th>
+                <td th:text="${user.id}">661d4a...</td>
+            </tr>
+            <tr>
+                <th>User Name</th>
+                <td th:text="${user.name}">张三</td>
+            </tr>
+            <tr>
+                <th>Email Address</th>
+                <td th:text="${user.email}">zhangsan@example.com</td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:unless="${user}">
+        <p class="error-msg">Error: User not found.</p>
+        <a th:href="@{/users}" class="btn btn-back">返回列表</a>
+    </div>
+
+</body>
+</html>
